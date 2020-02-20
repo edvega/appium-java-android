@@ -11,13 +11,19 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 public class Base {
 
-	public static AndroidDriver<AndroidElement> capabilities() throws MalformedURLException {
+	public static AndroidDriver<AndroidElement> capabilities(String device) throws MalformedURLException {
 		
 		File f = new File("src/app");
 		File appFile = new File(f, "ApiDemos-debug.apk");
 		
 		DesiredCapabilities cap = new DesiredCapabilities();
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Nexus5X");
+		
+		if (device.equals("emulator")) {
+			cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Nexus5X");
+		} else if(device.equals("real")) {
+			cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+		}
+		
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, 
 				AutomationName.ANDROID_UIAUTOMATOR2);
 		cap.setCapability(MobileCapabilityType.APP, appFile.getAbsolutePath());

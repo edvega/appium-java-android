@@ -16,7 +16,7 @@ public class Gestures extends Base {
 
 	public static void main(String[] args) throws MalformedURLException {
 		
-		AndroidDriver<AndroidElement> driver = Base.capabilities();
+		AndroidDriver<AndroidElement> driver = Base.capabilities("emulator");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElementByXPath("//android.widget.TextView[@text='Views']").click();
 		
